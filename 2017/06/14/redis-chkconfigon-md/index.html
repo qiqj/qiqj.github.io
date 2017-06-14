@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="1.将redis的配置文件复制到/etc/redis/redis.conf 1sudo cp /usr/local/redis/redis.conf /etc/redis/redis.conf 2.创建并编辑/etc/rc.d/init.d/redis 123touch /etc/rc.d/init.d/redisvim /etc/rc.d/init.d/redis 将一下脚本内容copy到/et">
+<meta name="description" content="自己动手安装过Redis的同学应该知道，redis的启动、停止依赖于安装包src目录下的redis-server、redis-cli这两个工具。一般情况下，我们要启动、停止或重启redis时都是直接使用这两个工具。我们项目组在使用redis时，redis是由我安装部署配置的，那么其他人可能根本就不知道redis被我安装在具体哪一个目录下。所以为了方便，我们可以将redis、注册为系统服务，通过se">
 <meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis注册成服务——Cent OS">
 <meta property="og:url" content="http://yoursite.com/2017/06/14/redis-chkconfigon-md/index.html">
 <meta property="og:site_name" content="Partager">
-<meta property="og:description" content="1.将redis的配置文件复制到/etc/redis/redis.conf 1sudo cp /usr/local/redis/redis.conf /etc/redis/redis.conf 2.创建并编辑/etc/rc.d/init.d/redis 123touch /etc/rc.d/init.d/redisvim /etc/rc.d/init.d/redis 将一下脚本内容copy到/et">
-<meta property="og:updated_time" content="2017-06-14T15:23:54.356Z">
+<meta property="og:description" content="自己动手安装过Redis的同学应该知道，redis的启动、停止依赖于安装包src目录下的redis-server、redis-cli这两个工具。一般情况下，我们要启动、停止或重启redis时都是直接使用这两个工具。我们项目组在使用redis时，redis是由我安装部署配置的，那么其他人可能根本就不知道redis被我安装在具体哪一个目录下。所以为了方便，我们可以将redis、注册为系统服务，通过se">
+<meta property="og:updated_time" content="2017-06-14T15:46:17.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis注册成服务——Cent OS">
-<meta name="twitter:description" content="1.将redis的配置文件复制到/etc/redis/redis.conf 1sudo cp /usr/local/redis/redis.conf /etc/redis/redis.conf 2.创建并编辑/etc/rc.d/init.d/redis 123touch /etc/rc.d/init.d/redisvim /etc/rc.d/init.d/redis 将一下脚本内容copy到/et">
+<meta name="twitter:description" content="自己动手安装过Redis的同学应该知道，redis的启动、停止依赖于安装包src目录下的redis-server、redis-cli这两个工具。一般情况下，我们要启动、停止或重启redis时都是直接使用这两个工具。我们项目组在使用redis时，redis是由我安装部署配置的，那么其他人可能根本就不知道redis被我安装在具体哪一个目录下。所以为了方便，我们可以将redis、注册为系统服务，通过se">
 
 
 
@@ -342,7 +342,8 @@
       
 
       
-        <p>1.将redis的配置文件复制到/etc/redis/redis.conf</p>
+        <p>自己动手安装过Redis的同学应该知道，redis的启动、停止依赖于安装包src目录下的redis-server、redis-cli这两个工具。一般情况下，我们要启动、停止或重启redis时都是直接使用这两个工具。我们项目组在使用redis时，redis是由我安装部署配置的，那么其他人可能根本就不知道redis被我安装在具体哪一个目录下。所以为了方便，我们可以将redis、注册为系统服务，通过service redis start|stop|restart 即可进行redis的使用。同时这样做还有一个好处是开机自启。<br>Redis 的安装比较简单，看官网教程或者搜索redis安装教程都能很轻松地解决，这里就不多说了。</p>
+<p>1.将redis的配置文件复制到/etc/redis/redis.conf</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo cp /usr/<span class="built_in">local</span>/redis/redis.conf /etc/redis/redis.conf</div></pre></td></tr></table></figure>
 <p>2.创建并编辑/etc/rc.d/init.d/redis</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">touch /etc/rc.d/init.d/redis</div><div class="line"></div><div class="line">vim /etc/rc.d/init.d/redis</div></pre></td></tr></table></figure>
