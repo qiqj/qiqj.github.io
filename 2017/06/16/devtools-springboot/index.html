@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="devtools spring-boot," />
+  <meta name="keywords" content="-devtools -spring-boot," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345&amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;			&amp;l">
-<meta name="keywords" content="devtools spring-boot">
+<meta name="description" content="—最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
+<meta name="keywords" content="-devtools -spring-boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IDEA中的Spring Boot热加载">
 <meta property="og:url" content="http://yoursite.com/2017/06/16/devtools-springboot/index.html">
 <meta property="og:site_name" content="Partager">
-<meta property="og:description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345&amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;			&amp;l">
-<meta property="og:updated_time" content="2017-06-15T16:15:23.802Z">
+<meta property="og:description" content="—最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
+<meta property="og:updated_time" content="2017-06-15T16:18:52.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IDEA中的Spring Boot热加载">
-<meta name="twitter:description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345&amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;			&amp;l">
+<meta name="twitter:description" content="—最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
 
 
 
@@ -400,12 +400,11 @@
       
 
       
-        <hr>
-<p>最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。</p>
+        <h2 id="—"><a href="#—" class="headerlink" title="—"></a>—</h2><p>最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。</p>
 <hr>
-<p>首先是添加devtools依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</div><div class="line">			&lt;optional&gt;true&lt;/optional&gt;&lt;!--依赖不会传递：如A——&gt;B且B——&gt;C ,C 中配置此项的依赖不会传递到A     --&gt;</div><div class="line">		&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
+<p>首先是添加devtools依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   &lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</div><div class="line">		&lt;optional&gt;true&lt;/optional&gt;&lt;!--依赖不会传递：如A——&gt;B且B——&gt;C ,C 中配置此项的依赖不会传递到A     --&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;</div><div class="line">		&lt;plugins&gt;</div><div class="line">			&lt;plugin&gt;</div><div class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">				&lt;configuration&gt;</div><div class="line">					&lt;fork&gt;true&lt;/fork&gt;</div><div class="line">				&lt;/configuration&gt;</div><div class="line">			&lt;/plugin&gt;</div><div class="line">		&lt;/plugins&gt;</div><div class="line">	&lt;/build&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> &lt;build&gt;</div><div class="line">&lt;plugins&gt;</div><div class="line">	&lt;plugin&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">		&lt;configuration&gt;</div><div class="line">			&lt;fork&gt;true&lt;/fork&gt;</div><div class="line">		&lt;/configuration&gt;</div><div class="line">	&lt;/plugin&gt;</div><div class="line">&lt;/plugins&gt;</div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
 <p>正常来说文件保存之后项目就会restart，但IDEA不会自动build，所以需要按下ctrl+F9, rebuild 项目</p>
 <hr>
 <p>devtools其实有很多坑，比如以下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User user = userMapper.selectById(long id);</div></pre></td></tr></table></figure></p>
@@ -455,7 +454,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/devtools-spring-boot/" rel="tag"># devtools spring-boot</a>
+            <a href="/tags/devtools-spring-boot/" rel="tag"># -devtools -spring-boot</a>
           
         </div>
       
@@ -548,8 +547,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -631,6 +639,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#—"><span class="nav-number">1.</span> <span class="nav-text">—</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
