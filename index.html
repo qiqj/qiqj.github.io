@@ -404,23 +404,15 @@
       
         
           
-            <p>自己动手安装过Redis的同学应该知道，redis的启动、停止依赖于安装包src目录下的redis-server、redis-cli这两个工具。一般情况下，我们要启动、停止或重启redis时都是直接使用这两个工具。我们项目组在使用redis时，redis是由我安装部署配置的，那么其他人可能根本就不知道redis被我安装在具体哪一个目录下。所以为了方便，我们可以将redis、注册为系统服务，通过service redis start|stop|restart 即可进行redis的使用。同时这样做还有一个好处是开机自启。<br>Redis 的安装比较简单，看官网教程或者搜索redis安装教程都能很轻松地解决，这里就不多说了。</p>
-<p>1.将redis的配置文件复制到/etc/redis/redis.conf</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo cp /usr/<span class="built_in">local</span>/redis/redis.conf /etc/redis/redis.conf</div></pre></td></tr></table></figure>
-<p>2.创建并编辑/etc/rc.d/init.d/redis</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">touch /etc/rc.d/init.d/redis</div><div class="line"></div><div class="line">vim /etc/rc.d/init.d/redis</div></pre></td></tr></table></figure>
-<p>将一下脚本内容copy到/etc/rc.d/init.d/redis中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># chkconfig:   2345 90 10</span></div><div class="line"></div><div class="line"><span class="comment"># description:  Redis</span></div><div class="line"></div><div class="line">REDISPORT=6379</div><div class="line">EXEC=/usr/<span class="built_in">local</span>/redis-3.2.1/src/redis-server</div><div class="line">REDIS_CLI=/usr/<span class="built_in">local</span>/redis-3.2.1/src/redis-cli</div><div class="line">PIDFILE=/var/run/redis_6379.pid</div><div class="line"><span class="string">"CONF="</span><span class="string">"/etc/redis/redis.conf"</span><span class="string">""</span></div><div class="line">AUTH=123456 </div><div class="line"><span class="string">"case "</span><span class="string">"<span class="variable">$1</span>"</span><span class="string">" in"</span></div><div class="line">start) </div><div class="line"><span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</div><div class="line"><span class="keyword">then</span> </div><div class="line"><span class="string">"echo "</span><span class="string">"<span class="variable">$PIDFILE</span> exists, process is already running or crashed"</span><span class="string">""</span></div><div class="line"><span class="keyword">else</span> </div><div class="line"><span class="string">"echo "</span><span class="string">"Starting Redis server..."</span><span class="string">""</span></div><div class="line"><span class="variable">$EXEC</span> <span class="variable">$CONF</span> &amp; </div><div class="line"><span class="keyword">fi</span> </div><div class="line"><span class="string">"if [ "</span><span class="string">"$?"</span><span class="string">"="</span><span class="string">"0"</span><span class="string">" ]"</span></div><div class="line"><span class="keyword">then</span> </div><div class="line"><span class="string">"echo "</span><span class="string">"Redis is running..."</span><span class="string">""</span></div><div class="line"><span class="keyword">fi</span> </div><div class="line">;; </div><div class="line">stop) </div><div class="line"><span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</div><div class="line"><span class="keyword">then</span> </div><div class="line"><span class="string">"echo "</span><span class="string">"<span class="variable">$PIDFILE</span> does not exist, process is not running"</span><span class="string">""</span></div><div class="line"><span class="keyword">else</span> </div><div class="line">PID=$(cat <span class="variable">$PIDFILE</span>)</div><div class="line"><span class="string">"echo "</span><span class="string">"Stopping ..."</span><span class="string">""</span></div><div class="line"><span class="variable">$REDIS_CLI</span> -p <span class="variable">$REDISPORT</span> -a <span class="variable">$AUTH</span> SHUTDOWN <span class="comment">#根据redis的配置文件来编辑，此处是因为我自己的redis配置了认证密码</span></div><div class="line"><span class="keyword">while</span> [ -x <span class="variable">$&#123;PIDFILE&#125;</span> ]</div><div class="line"><span class="keyword">do</span> </div><div class="line"><span class="string">"echo "</span><span class="string">"Waiting for Redis to shutdown ..."</span><span class="string">""</span></div><div class="line">sleep 1 </div><div class="line"><span class="keyword">done</span> </div><div class="line"><span class="string">"echo "</span><span class="string">"Redis stopped"</span><span class="string">""</span></div><div class="line"><span class="keyword">fi</span> </div><div class="line">;; </div><div class="line">restart|force-reload)</div><div class="line"><span class="variable">$&#123;0&#125;</span> stop </div><div class="line"><span class="variable">$&#123;0&#125;</span> start </div><div class="line">;; </div><div class="line">*) </div><div class="line"><span class="string">"echo "</span><span class="string">"Usage: /etc/rc.d/init.d/redis &#123;start|stop|restart|force-reload&#125;"</span><span class="string">" &gt;&amp;2"</span></div><div class="line"><span class="built_in">exit</span> 1 </div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
-<p>3.将redis注册为服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/rc.d/init.d</div><div class="line">chmod +x redis <span class="comment">#添加可执行权限</span></div><div class="line">chkconfig --add redis <span class="comment">#注册为service</span></div><div class="line">chkconfig redis on  <span class="comment">#开启</span></div></pre></td></tr></table></figure>
-<p>4.服务开关命令</p>
-<ul>
-<li>开启redis服务 : service redis start</li>
-<li>停止redis服务 : service redis stop</li>
-<li>重启redis服务 : service redis restart</li>
-</ul>
-
-          
+          自己动手安装过Redis的同学应该知道，redis的启动、停止依赖于安装包src目录下的redis-server、redis-cli这两个工具。一般情况下，我们要启动、停止或重启redis时都是直接使用这两个工具。我们项目组在使用redis时，redis是由我安装部署配置的，那么其他人可能根本就不知
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/14/redis-chkconfigon-md/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -552,102 +544,20 @@
       
         
           
-            <p><strong>所有标签都有一个默认样式，称为浏览器样式，或者默认样式</strong></p>
-<p><strong>行内样式：通过在标签中设置style属性来达到实现控制标签的样式的效果。eg:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">"color:red;"</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><strong>可以设置多个css属性</strong></p>
-</blockquote>
-<p><strong>嵌入样式：在head标签中嵌套一个style标签，在style标签中可以书写css样式</strong></p>
-<p><strong>外联样式：通过link标签</strong></p>
-<p><strong>后代选择器：空格</strong></p>
-<p><strong>并集选择器：逗号</strong></p>
-<p><strong>子元素选择器：&gt;</strong> 只选择儿子辈的元素</p>
-<p><em>顺序不能颠倒</em></p>
-<h4 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h4><p>LVHA原则</p>
-<pre><code> /*未访问过的链接*/
-a:link {
-    color: red;
-}
+          所有标签都有一个默认样式，称为浏览器样式，或者默认样式
+行内样式：通过在标签中设置style属性来达到实现控制标签的样式的效果。eg:1&lt;h1 style="color:red;"&gt;这是一个标题&lt;/h1&gt;
 
-/*已访问过的链接*/
-a:visited { color: gray; }
+可以设置多个css属性
 
-/*进入*/
-a:hover {
-    color: green;
-}
-
-/*被点击*/
-a:active {
-    color: purple;
-}
-</code></pre><p>层叠性，继承性</p>
-<p>文字相关的属性可以继承,盒子相关不能继承</p>
-<p>一般情况下对body进行字体设置</p>
-<h4 id="css优先级"><a href="#css优先级" class="headerlink" title="css优先级"></a>css优先级</h4><ol>
-<li><p>行内样式&gt;id选择器&gt;类选择器&gt;标签选择器</p>
-</li>
-<li><p>继承的样式优先级 大于 默认的样式优先级</p>
-</li>
-<li><p>通配符选择器优先级大于  继承的样式优先级</p>
-</li>
-<li>标签选择器的优先级大于通配符选择器优先级</li>
-</ol>
-<h3 id="复合选择器的优先级"><a href="#复合选择器的优先级" class="headerlink" title="复合选择器的优先级"></a>复合选择器的优先级</h3><p>行内样式&gt;id选择器&gt;类选择器&gt;标签选择器</p>
-<h3 id="css单位-与-文字排版"><a href="#css单位-与-文字排版" class="headerlink" title="css单位 与 文字排版"></a>css单位 与 文字排版</h3><p>dispaly:控制标签的显示模式</p>
-<ol>
-<li>none 移除元素</li>
-<li>inline 让元素变成行内元素， 不能设置宽高，只有左右边距，不独占行</li>
-<li>block 让元素变成块级元素， 可以设置宽高，上下左右边距，独占行</li>
-<li>inline-block 变成行内块元素， 可以设置宽高，左右边距，不独占行</li>
-<li></li>
-</ol>
-<p>行内元素不能设置宽高，只能通过内容来撑开宽高；</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">visibility：hide；//隐藏  </div><div class="line">display:none;// 移除，不影响页面布局</div></pre></td></tr></table></figure>
-<h3 id="css颜色表示"><a href="#css颜色表示" class="headerlink" title="css颜色表示"></a>css颜色表示</h3><ol>
-<li>rgb(r,g,b) </li>
-<li>#rrggbb </li>
-</ol>
-<p>r、g、b :0-255 获取百分比</p>
-<p>rr、gg、bb：0-255 的十六进制</p>
-<h3 id="css长度单位"><a href="#css长度单位" class="headerlink" title="css长度单位"></a>css长度单位</h3><p>一般用相对长度单位：px、em、rem  em：当前字体大小，例如：当前元素的字体大小为12px，那么1em=12px；</p>
-<h3 id="文字排版"><a href="#文字排版" class="headerlink" title="文字排版"></a>文字排版</h3><p>font-size：字号大小，一般页面12px、14px<br>font-family: 字体<br>非衬线体收尾</p>
-<h3 id="字体系列"><a href="#字体系列" class="headerlink" title="字体系列"></a>字体系列</h3><p>衬线体和非衬线体 </p>
-<h3 id="字体加粗"><a href="#字体加粗" class="headerlink" title="字体加粗"></a>字体加粗</h3><p>设置字体不需要单位</p>
-<ol>
-<li>b标签</li>
-<li>font-weight:700;  100-900 ：400正常</li>
-</ol>
-<h3 id="字体风格"><a href="#字体风格" class="headerlink" title="字体风格"></a>字体风格</h3><p>font-style</p>
-<ol>
-<li>normal:默认值，标准</li>
-<li>italic：使用斜体显示，如果系统没有斜体的字体，则正常显示</li>
-<li>oblique：倾斜</li>
-</ol>
-<h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font:style weight size family</div></pre></td></tr></table></figure>
-<h3 id="字间距"><a href="#字间距" class="headerlink" title="字间距"></a>字间距</h3><p>letter-spacing：字符与字符之间的空白，默认为normal ，px为单位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">li &#123;</div><div class="line">           font-family: &quot;微软雅黑&quot;;</div><div class="line">           font-size: 16px;</div><div class="line">           font-style: oblique;</div><div class="line">           font-weight: 700;</div><div class="line">           letter-spacing: normal;</div><div class="line">           letter-spacing: 20px; /*字符间距*/</div><div class="line">           word-spacing:10px;/*只对字符之间有空格的有影响*/</div><div class="line">       &#125;</div><div class="line"></div><div class="line">a &#123;</div><div class="line">           display: inline-block;</div><div class="line">           background-color:silver;</div><div class="line">           width: 100px;</div><div class="line">           height: 50px;</div><div class="line">           line-height: 50px;/*文本垂直居中*/</div><div class="line">           text-align: center;/*文本水平居中*/</div><div class="line">           letter-spacing: 30px;</div><div class="line">           text-decoration: none;/*去掉下划线*/</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
-<h3 id="行高-line-height"><a href="#行高-line-height" class="headerlink" title="行高 line-height"></a>行高 line-height</h3><h3 id="文本装饰"><a href="#文本装饰" class="headerlink" title="文本装饰"></a>文本装饰</h3><p>text-decoration<br>none    默认。定义标准的文本。</p>
-<p>underline    定义文本下的一条线。</p>
-<p>overline    定义文本上的一条线。</p>
-<p>line-through    定义穿过文本下的一条线。</p>
-<p>blink    定义闪烁的文本。</p>
-<p>inherit    规定应该从父元素继承 text-decoration 属性的值。 </p>
-<h3 id="水平对齐方式-text-align"><a href="#水平对齐方式-text-align" class="headerlink" title="水平对齐方式 text-align"></a>水平对齐方式 text-align</h3><ol>
-<li>left： 默认值</li>
-<li>right</li>
-<li>center</li>
-</ol>
-<h3 id="首行缩进"><a href="#首行缩进" class="headerlink" title="首行缩进"></a>首行缩进</h3><p> 只能设置于块级标签</p>
-<p> text-indent ：值为em的倍数，不同单位的数值，浏览器宽度的百分比，允许使用负值，建议用em作为单位<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">text-indent:-9999px;text-indent:-9999px;/*用于隐藏网站logo的标题，易于seo*/</div></pre></td></tr></table></figure></p>
-<h3 id="空白符处理"><a href="#空白符处理" class="headerlink" title="空白符处理"></a>空白符处理</h3><p>white-space:normal; 正常显示，自动折行<br>white-space: nowrap; 即使超过盒子宽度，文本也不换行显示<br>white-space: pre; 写html的时候什么样式，显示就什么样式</p>
-<h3 id="word-break-自动换行"><a href="#word-break-自动换行" class="headerlink" title="word-break 自动换行"></a>word-break 自动换行</h3><ol>
-<li>normal 不打断单词显示</li>
-<li>break-all 允许单词打断换行</li>
-<li>keep-all 只能在半角空格或连字符换行，单词不换行，空格和换行符才换行</li>
-</ol>
-
-          
+嵌入样式：在head标签中嵌套一个styl
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/14/css-note-1-md/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
