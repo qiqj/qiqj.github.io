@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="—最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
+<meta name="description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
 <meta name="keywords" content="-devtools -spring-boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IDEA中的Spring Boot热加载">
 <meta property="og:url" content="http://yoursite.com/2017/06/16/devtools-springboot/index.html">
 <meta property="og:site_name" content="Partager">
-<meta property="og:description" content="—最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
-<meta property="og:updated_time" content="2017-06-15T16:18:52.146Z">
+<meta property="og:description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
+<meta property="og:updated_time" content="2017-06-24T10:28:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IDEA中的Spring Boot热加载">
-<meta name="twitter:description" content="—最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
+<meta name="twitter:description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
 
 
 
@@ -148,7 +148,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?cf920aeaeb552cd2dcb0b5f072010b45";
+      hm.src = "https://hm.baidu.com/hm.js?ef3383249dcc902a1988fa3d0e3289fc";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -400,7 +400,8 @@
       
 
       
-        <h2 id="—"><a href="#—" class="headerlink" title="—"></a>—</h2><p>最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。</p>
+        <hr>
+<p>最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。</p>
 <hr>
 <p>首先是添加devtools依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   &lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</div><div class="line">		&lt;optional&gt;true&lt;/optional&gt;&lt;!--依赖不会传递：如A——&gt;B且B——&gt;C ,C 中配置此项的依赖不会传递到A     --&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
 <hr>
@@ -547,17 +548,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -639,22 +631,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#—"><span class="nav-number">1.</span> <span class="nav-text">—</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
