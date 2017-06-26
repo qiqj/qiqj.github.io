@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="devtools,spring-boot," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,17 +93,16 @@
 
 
 
-<meta name="description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
-<meta name="keywords" content="devtools,spring-boot">
+<meta name="description" content="mysql备份：mysqldump -uroot -p pass db &amp;gt;  xxx.sql 压缩：mysqldump -hhostname -uusername -ppassword databasename | gzip &amp;gt; backupfile.sql.gz 恢复：gunzip &amp;lt; backupfile.sql.gz | mysql -uusername -ppasswor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IDEA中的Spring Boot热加载">
-<meta property="og:url" content="http://yoursite.com/2017/06/16/devtools-springboot/index.html">
+<meta property="og:title" content="Linux下Mysql定时备份">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/Mysql定时备份/index.html">
 <meta property="og:site_name" content="Partager">
-<meta property="og:description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
-<meta property="og:updated_time" content="2017-06-24T11:53:57.013Z">
+<meta property="og:description" content="mysql备份：mysqldump -uroot -p pass db &amp;gt;  xxx.sql 压缩：mysqldump -hhostname -uusername -ppassword databasename | gzip &amp;gt; backupfile.sql.gz 恢复：gunzip &amp;lt; backupfile.sql.gz | mysql -uusername -ppasswor">
+<meta property="og:updated_time" content="2017-06-26T08:47:46.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IDEA中的Spring Boot热加载">
-<meta name="twitter:description" content="最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。  首先是添加devtools依赖12345   &amp;lt;dependency&amp;gt;		&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;		&amp;">
+<meta name="twitter:title" content="Linux下Mysql定时备份">
+<meta name="twitter:description" content="mysql备份：mysqldump -uroot -p pass db &amp;gt;  xxx.sql 压缩：mysqldump -hhostname -uusername -ppassword databasename | gzip &amp;gt; backupfile.sql.gz 恢复：gunzip &amp;lt; backupfile.sql.gz | mysql -uusername -ppasswor">
 
 
 
@@ -131,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/16/devtools-springboot/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/26/Mysql定时备份/"/>
 
 
 
 
 
-  <title>IDEA中的Spring Boot热加载 | Partager</title>
+  <title>Linux下Mysql定时备份 | Partager</title>
   
 
 
@@ -314,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/16/devtools-springboot/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/Mysql定时备份/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qiqj">
@@ -331,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IDEA中的Spring Boot热加载</h1>
+          <h1 class="post-title" itemprop="name headline">Linux下Mysql定时备份</h1>
         
 
         <div class="post-meta">
@@ -343,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T00:10:46+08:00">
-                2017-06-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T16:45:34+08:00">
+                2017-06-26
               </time>
             
 
@@ -366,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring-Boot/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring Boot</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -400,16 +399,88 @@
       
 
       
-        <hr>
-<p>最近到了新的公司，发现框架里没有集成热启动（文件修改之后项目自动rebuild、restart），就查了一下资料，这里记录一下。我这里用到的主要是devtools这个工具，集成的方式也很简单。</p>
-<hr>
-<p>首先是添加devtools依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   &lt;dependency&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</div><div class="line">		&lt;optional&gt;true&lt;/optional&gt;&lt;!--依赖不会传递：如A——&gt;B且B——&gt;C ,C 中配置此项的依赖不会传递到A     --&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> &lt;build&gt;</div><div class="line">&lt;plugins&gt;</div><div class="line">	&lt;plugin&gt;</div><div class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">		&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</div><div class="line">		&lt;configuration&gt;</div><div class="line">			&lt;fork&gt;true&lt;/fork&gt;</div><div class="line">		&lt;/configuration&gt;</div><div class="line">	&lt;/plugin&gt;</div><div class="line">&lt;/plugins&gt;</div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
-<p>正常来说文件保存之后项目就会restart，但IDEA不会自动build，所以需要按下ctrl+F9, rebuild 项目</p>
-<hr>
-<p>devtools其实有很多坑，比如以下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User user = userMapper.selectById(long id);</div></pre></td></tr></table></figure></p>
-<p>我在项目中使用tk-mybatis的Mapper时，Mapper<t> 中的实体会使用系统默认的类加载器加载，也就是上面代码中，等号右边的user使用了系统的类加载器，而左边的user使用的是devtools的restart类加载器。这是会出现 xxx cast to xxx的类型转换异常，因为他们使用了不用的类加载器。除了类加载器还会有页面cache的问题等等。但也都能在搜索引擎找到答案，只是使用的时候需要特别注意。</t></p>
+        <p>mysql备份：mysqldump -uroot -p pass db &gt;  xxx.sql</p>
+<p>压缩：mysqldump -hhostname -uusername -ppassword databasename | gzip &gt; backupfile.sql.gz</p>
+<p>恢复：gunzip &lt; backupfile.sql.gz | mysql -uusername -ppassword databasename</p>
+<p>定时备份即是在Mysql的生产环境中启动一个定时任务，每隔一段时间使用mysqldump工具执行一次备份。</p>
+<h2 id="1-创建shell脚本"><a href="#1-创建shell脚本" class="headerlink" title="1.创建shell脚本"></a>1.创建shell脚本</h2><pre><code>mkdir /bak
+
+mkdir /bak/bakmysql
+
+mkdir /bak/bakmysqlold    
+
+touch /bak/bakmysql/backup.sh
+
+vim /bak/bakmysql/backup.sh
+</code></pre><p>在backup.sh填入以下内容，根据实际情况进行修改</p>
+<pre><code>#!/bin/sh
+cd /bak/bakmysql
+echo &quot;已切换到备份目录,开始备份...&quot;
+mv bakmysql* /bak/bakmysqlold
+echo &quot;旧文件已保存到/bak/bakmysqlold&quot;
+Now=$(date +&quot;%d-%m-%Y&quot;)
+Mysqlpd=&quot;pass&quot;
+File=bakmysql-$Now.sql.gz
+echo &quot;开始dump数据库...&quot;
+mysqldump -uroot -p$Mysqlpd wh_cloud | gzip &gt; $File
+echo &quot;dump success!开始远程复制...&quot;
+passwd=&quot;passwd&quot;
+expect &lt;&lt;EOF
+spawn /usr/bin/scp $File root@192.168.0.1:/usr/local/$File
+expect {
+    &quot;密码：&quot;
+            {
+           send &quot;$passwd\n&quot;
+          }
+    &quot;pass&quot;
+          {
+            send &quot;$passwd\n&quot;
+          }
+    &quot;yes/no&quot;
+           {
+           sleep 5
+           send_user &quot;send yes&quot;
+           send &quot;yes\n&quot;
+                    }
+    eof
+     {
+         sleep 5
+         send_user &quot;eof\n&quot;
+     }
+}
+send &quot;exit\r&quot;
+expect eof
+EOF
+echo &quot;复制全部完成！即将退出...&quot;
+</code></pre><h2 id="2-安装crontab"><a href="#2-安装crontab" class="headerlink" title="2.安装crontab"></a>2.安装crontab</h2><blockquote>
+<p>crontab命令用来将crontab文件提交给cron进程执行</p>
+</blockquote>
+<pre><code>yum install -y vixie-cron
+
+yum install -y crontabs
+
+yum install -y expect #用作自动密码登录
+</code></pre><p>等到操作完成。检查是否已安装：</p>
+<pre><code>$ service crond status
+crond 已停
+</code></pre><p><strong>crond 启动停止</strong></p>
+<pre><code>启动服务: service crond start 
+关闭服务: service crond stop 
+重启服务: service crond restart 
+重新载入配置:service crond reload 
+查看crontab服务状态：service crond status
+手动启动crontab服务：service crond start
+查看crontab服务是否已设置为开机启动，执行命令：ntsysv
+没有就加入开机自动启动:免得每次手动启动麻烦：chkconfig --level 35 crond on
+</code></pre><h2 id="3-创建定时任务"><a href="#3-创建定时任务" class="headerlink" title="3.创建定时任务"></a>3.创建定时任务</h2><p>创建一个每周一晚23点执行一次mysql备份时程表：</p>
+<pre><code>touch bakcron
+vi bakcron
+</code></pre><p>加入一下内容，保存退出。（或者直接执行crontab -e 进行编辑）</p>
+<pre><code>0 23 * * 1 /bin/sh /bak/bakmysql/backup.sh
+</code></pre><p><em>/bak/bakmysql/backup.sh为数据库备份操作脚本</em></p>
+<h2 id="4-执行定时任务"><a href="#4-执行定时任务" class="headerlink" title="4.执行定时任务"></a>4.执行定时任务</h2><p>在命令行输入</p>
+<pre><code>crontab bakcron
+</code></pre><p>　　<br>查看/var/spool/cron目录，可以看到有文件名为用户名的文件。</p>
 
       
     </div>
@@ -453,14 +524,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/devtools/" rel="tag"># devtools</a>
-          
-            <a href="/tags/spring-boot/" rel="tag"># spring-boot</a>
-          
-        </div>
-      
 
       
       
@@ -470,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/14/redis-chkconfigon-md/" rel="next" title="Redis注册成服务——Cent OS">
-                <i class="fa fa-chevron-left"></i> Redis注册成服务——Cent OS
+              <a href="/2017/06/24/spring-boot-scheduler/" rel="next" title="Spring Boot中使用定时任务">
+                <i class="fa fa-chevron-left"></i> Spring Boot中使用定时任务
               </a>
             
           </div>
@@ -479,10 +542,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/24/spring-boot-scheduler/" rel="prev" title="Spring Boot中使用定时任务">
-                Spring Boot中使用定时任务 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -554,8 +613,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -637,6 +705,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建shell脚本"><span class="nav-number">1.</span> <span class="nav-text">1.创建shell脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装crontab"><span class="nav-number">2.</span> <span class="nav-text">2.安装crontab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-创建定时任务"><span class="nav-number">3.</span> <span class="nav-text">3.创建定时任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-执行定时任务"><span class="nav-number">4.</span> <span class="nav-text">4.执行定时任务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
